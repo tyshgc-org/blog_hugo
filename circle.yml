@@ -1,0 +1,29 @@
+general:
+  branches:
+    ignore:
+      - gh-pages
+
+machine:
+  timezone: Asia/Tokyo
+  node:
+      version: 5.1.0
+
+dependencies:
+  pre:
+    - npm install -g gulp
+    - git config --global user.name "tyshgc"
+    - git config --global user.email "hello@tyshgc.pw"
+  override:
+    - npm install
+  post:
+    - ./node_modules/.bin/gulp build
+
+deployment:
+  master:
+    branch: master
+    commands:
+      - git clone git@github.com:tyshgc-org/blog.git public
+      - hugo
+      - cd public && git add .
+      - cd public && git commit -m "[ci skip] publish"
+      - cd public && git push origin master
