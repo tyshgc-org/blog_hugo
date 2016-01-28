@@ -156,8 +156,15 @@ gulp.task('watch:start', [
  * run task
  */
 gulp.task('default', [
-  //'clear',
+  'clear',
   'compile:jade',
   'compile:stylus',
   'watch:start'
+]);
+
+gulp.task('build', [
+  'clear',
+  'compile:jade',
+  'compile:stylus',
+  'build:javascript'
 ]);
