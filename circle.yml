@@ -22,7 +22,6 @@ deployment:
   master:
     branch: master
     commands:
-      - git clone git@github.com:tyshgc-org/blog.git public
       - hugo
       - cd public && git add .
       - cd public && git commit -m "[ci skip] publish"
