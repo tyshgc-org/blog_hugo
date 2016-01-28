@@ -10,6 +10,7 @@ machine:
 
 dependencies:
   pre:
+    - go get -v github.com/spf13/hugo
     - npm install -g gulp
     - git config --global user.name "tyshgc"
     - git config --global user.email "hello@tyshgc.pw"
