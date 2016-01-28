@@ -23,9 +23,10 @@ const d = {
   assets: 'assets/',
   dest: './themes/tyshgc-blog/',
   images: 'images/',
+  layouts: 'layouts/',
   script: 'scripts/',
   src: './src/',
-  static: 'statics/assets/',
+  static: 'static/assets/',
   style: 'styles/',
 };
 
@@ -48,12 +49,12 @@ gulp.task('clear', ()=> {
  * jade
  */
 gulp.task('compile:jade', ()=> {
-  gulp.src(d.src+'/!(_)*.jade')
+  gulp.src(d.src+d.layouts+'/!(_)*.jade')
     .pipe($.plumber())
     .pipe($.jade({
       pretty: true
     }))
-    .pipe(gulp.dest(d.dest));
+    .pipe(gulp.dest(d.dest+d.layouts));
 });
 
 
@@ -75,7 +76,7 @@ gulp.task('compile:jade', ()=> {
    .pipe(browserSync.reload({
      stream: true
    }))
-   .pipe(gulp.dest(d.dest+d.statics));
+   .pipe(gulp.dest(d.dest+d.static));
 });
 
 /**
@@ -92,7 +93,7 @@ function compile(watch) {
       .pipe(buffer())
       .pipe($.sourcemaps.init({loadMaps: true }))
       .pipe($.sourcemaps.write('./'))
-      .pipe(gulp.dest(d.dest+d.statics));
+      .pipe(gulp.dest(d.dest+d.static));
   }
 
   if (watch) {
