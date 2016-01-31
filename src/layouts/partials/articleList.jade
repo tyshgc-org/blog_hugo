@@ -1,0 +1,6 @@
+ul
+  | {{ range .Data.Pages }}
+  li
+    a(href="{{ .RelPermalink}}")
+      | {{ .Title}}
+  | {{ end }}

@@ -41,7 +41,7 @@ gulp.task('clear', ()=> {
   return gulp.src([
       d.dest
     ], {read: false})
-    .pipe($.clean());
+    .pipe($.clean({force: true}));
 });
 
 
@@ -49,7 +49,7 @@ gulp.task('clear', ()=> {
  * jade
  */
 gulp.task('compile:jade', ()=> {
-  gulp.src(d.src+d.layouts+'/!(_)*.jade')
+  gulp.src(d.src+d.layouts+'/**/!(_)*.jade')
     .pipe($.plumber())
     .pipe($.jade({
       pretty: true
@@ -156,14 +156,14 @@ gulp.task('watch:start', [
  * run task
  */
 gulp.task('default', [
-  'clear',
+  //'clear',
   'compile:jade',
   'compile:stylus',
   'watch:start'
 ]);
 
 gulp.task('build', [
-  'clear',
+  //'clear',
   'compile:jade',
   'compile:stylus',
   'build:javascript'
